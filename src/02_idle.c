@@ -8,15 +8,21 @@ void idle_cb(uv_idle_t* handle) {
 }
 
 int main() {
-  uv_idle_t idle_handle;
+  uv_idle_t* idle_handle;
 
   /* 1. create the event loop */
-
+  uv_loop_t *loop = uv_default_loop();
+  log_info(".");
   /* 2. initialize an idle handler for the loop */
+  uv_idle_init(loop, idle_handle);
 
   /* 3. start the idle handler with a function to call */
+  uv_idle_start(idle_handle, idle_cb);
+
 
   /* 4. start the event loop */
+  uv_run(loop, UV_RUN_DEFAULT);
 
+  //uv_loop_close(loop);
   return 0;
 }
