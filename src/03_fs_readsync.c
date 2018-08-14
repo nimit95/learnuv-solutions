@@ -9,6 +9,7 @@ int main() {
 
   /* 1. Open file */
   uv_fs_t open_req;
+  r = uv_fs_open(loop, &open_req, filename, O_RDONLY, S_IRUSR, NULL);
 
   if (r < 0) CHECK(r, "uv_fs_open");
 
@@ -17,9 +18,11 @@ int main() {
   /*    Make sure you set your uv_buf_t size to BUF_SIZE instead of sizeof(buf) */
   char buf[BUF_SIZE + 1];
   memset(buf, 0, sizeof(buf));
+  uv_buf_t iov = uv_buf_init(buf, BUF_SIZE);
 
   /* 3. Use the file descriptor (the .result of the open_req) to read from the file into the buffer */
   uv_fs_t read_req;
+  r = uv_fs_read(loop, &read_req, open_req.result, &iov, 1, -1, NULL);
 
   if (r < 0) CHECK(r, "uv_fs_read");
 
@@ -30,6 +33,7 @@ int main() {
 
   /* 5. Close the file descriptor (`open_req.result`) */
   uv_fs_t close_req;
+  r = uv_fs_close(loop, &close_req, open_req.result, NULL);
 
   if (r < 0) CHECK(r, "uv_fs_close");
 
