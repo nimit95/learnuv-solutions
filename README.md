@@ -2,7 +2,7 @@
 
 <a href="https://www.patreon.com/bePatron?u=8663953"><img alt="become a patron" src="https://c5.patreon.com/external/logo/become_a_patron_button.png" height="35px"></a>
 
-These are the solution for the learnuv.  You can find the source code in src directory.  
+These are the solutions for learnuv.  You can find the source code in src directory.  
 To execute the src file run the following commands
 
 ```sh
@@ -14,6 +14,8 @@ Eg
 ```sh
 ./out/Debug/03_fs_readsync
 ```
+
+Original repo link [](https://github.com/thlorenz/learnuv)
 
 Learn uv for fun and profit, a self guided workshop to [the library](https://github.com/libuv/libuv) that powers Node.js.
 
